@@ -9,19 +9,19 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PrimesServiceTest {
+public class DefaultPrimesServiceTest {
 
-    PrimesService primesService;
+    DefaultPrimesService defaultPrimesService;
 
     @Before
     public void setup() {
-        primesService = new PrimesService();
+        defaultPrimesService = new DefaultPrimesService();
     }
 
     @Test
     public void testRerunsEmptyListWhenBoundIsNegative() {
 
-        List<Integer> primes = primesService.findPrimes(-2);
+        List<Integer> primes = defaultPrimesService.findPrimes(-2);
 
         assertThat(primes, hasSize(0));
     }
@@ -29,7 +29,7 @@ public class PrimesServiceTest {
     @Test
     public void testRerunsEmptyListWhenBoundIsZero() {
 
-        List<Integer> primes = primesService.findPrimes(0);
+        List<Integer> primes = defaultPrimesService.findPrimes(0);
 
         assertThat(primes, hasSize(0));
     }
@@ -37,7 +37,7 @@ public class PrimesServiceTest {
     @Test
     public void testRerunsEmptyListWhenBoundIsOne() {
 
-        List<Integer> primes = primesService.findPrimes(1);
+        List<Integer> primes = defaultPrimesService.findPrimes(1);
 
         assertThat(primes, hasSize(0));
     }
@@ -45,7 +45,7 @@ public class PrimesServiceTest {
     @Test
     public void testRetuningOneElementList() {
 
-        List<Integer> primes = primesService.findPrimes(2);
+        List<Integer> primes = defaultPrimesService.findPrimes(2);
 
         assertThat(primes, contains(2));
     }
@@ -53,7 +53,7 @@ public class PrimesServiceTest {
     @Test
     public void testPrimesGenerationWithBoundReturned() {
 
-        List<Integer> primes = primesService.findPrimes(7);
+        List<Integer> primes = defaultPrimesService.findPrimes(7);
 
         assertThat(primes, contains(2, 3, 5, 7));
     }
@@ -61,7 +61,7 @@ public class PrimesServiceTest {
     @Test
     public void testPrimesGenerationWithBoundNotReturned() {
 
-        List<Integer> primes = primesService.findPrimes(10);
+        List<Integer> primes = defaultPrimesService.findPrimes(10);
 
         assertThat(primes, contains(2, 3, 5, 7));
     }

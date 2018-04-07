@@ -3,7 +3,7 @@ package com.example.rbstest.controller;
 import java.util.List;
 
 import com.example.rbstest.api.PrimesResponse;
-import com.example.rbstest.service.PrimesService;
+import com.example.rbstest.service.DefaultPrimesService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class PrimesController {
     public static final Logger logger = LoggerFactory.getLogger(PrimesController.class);
 
     @Autowired
-    PrimesService primesService;
+    DefaultPrimesService defaultPrimesService;
 
     @GetMapping(value = "/{bound}")
     @ResponseBody
@@ -30,7 +30,7 @@ public class PrimesController {
     public PrimesResponse findPrimes(@PathVariable("bound") int bound) {
         logger.info("Retrieving primes up to {}", bound);
 
-        List<Integer> primes = primesService.findPrimes(bound);
+        List<Integer> primes = defaultPrimesService.findPrimes(bound);
 
         PrimesResponse primesResponse = new PrimesResponse(bound, primes);
         logger.info("Retried primes {}", primesResponse);
