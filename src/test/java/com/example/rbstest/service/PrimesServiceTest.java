@@ -43,6 +43,14 @@ public class PrimesServiceTest {
     }
 
     @Test
+    public void testRetuningOneElementList() {
+
+        List<Integer> primes = primesService.findPrimes(2);
+
+        assertThat(primes, contains(2));
+    }
+
+    @Test
     public void testPrimesGenerationWithBoundReturned() {
 
         List<Integer> primes = primesService.findPrimes(7);
