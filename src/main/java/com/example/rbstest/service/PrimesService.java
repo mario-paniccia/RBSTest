@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PrimesService {
 
-    public static List<Integer> findPrimes(int n) {
-        return IntStream.rangeClosed(2, n)
+    public static List<Integer> findPrimes(int bound) {
+        return IntStream.rangeClosed(2, bound)
                 .filter(x -> Primes.isPrime(x)).boxed()
                 .collect(Collectors.toList());
     }
