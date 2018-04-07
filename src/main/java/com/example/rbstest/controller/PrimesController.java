@@ -33,7 +33,7 @@ public class PrimesController {
         List<Integer> primes = primesService.findPrimes(bound);
 
         PrimesResponse primesResponse = new PrimesResponse(bound, primes);
-        logger.info("Retried primes {}", primesResponse);
+        logger.info("Retrieved primes {}", primesResponse);
         return primesResponse;
     }
 }
