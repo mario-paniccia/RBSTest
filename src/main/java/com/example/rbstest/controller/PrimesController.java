@@ -7,8 +7,6 @@ import com.example.rbstest.service.PrimesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +24,13 @@ public class PrimesController {
 
     @GetMapping(value = "/{bound}")
     @ResponseBody
-    public ResponseEntity<PrimesResponse> findPrimes(@PathVariable("bound") int bound) {
+    public PrimesResponse findPrimes(@PathVariable("bound") int bound) {
         logger.info("Retrieving primes up to {}", bound);
 
         List<Integer> primes = primesService.findPrimes(bound);
 
         PrimesResponse primesResponse = new PrimesResponse(bound, primes);
         logger.info("Retried primes {}", primesResponse);
-        return new ResponseEntity<>(primesResponse, HttpStatus.OK);
+        return primesResponse;
     }
 }
