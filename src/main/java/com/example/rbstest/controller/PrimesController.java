@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.rbstest.api.PrimesResponse;
 import com.example.rbstest.service.PrimesService;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class PrimesController {
 
     @GetMapping(value = "/{bound}")
     @ResponseBody
+    @ApiOperation(value = "returns all the prime numbers up to an including a bound number",
+            notes = "if bound is less than 2, returns an empty list")
     public PrimesResponse findPrimes(@PathVariable("bound") int bound) {
         logger.info("Retrieving primes up to {}", bound);
 
