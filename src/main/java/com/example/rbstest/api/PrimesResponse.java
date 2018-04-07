@@ -22,4 +22,12 @@ public class PrimesResponse {
     public List<Integer> getPrimes() {
         return primes;
     }
+
+    @Override
+    public String toString() {
+        return "PrimesResponse{" +
+                "initial=" + initial +
+                ", primes=" + primes +
+                '}';
+    }
 }

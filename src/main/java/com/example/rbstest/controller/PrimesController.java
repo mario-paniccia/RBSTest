@@ -28,9 +28,11 @@ public class PrimesController {
     @ResponseBody
     public ResponseEntity<PrimesResponse> findPrimes(@PathVariable("bound") int bound) {
         logger.info("Retrieving primes up to {}", bound);
+
         List<Integer> primes = primesService.findPrimes(bound);
 
         PrimesResponse primesResponse = new PrimesResponse(bound, primes);
+        logger.info("Retried primes {}", primesResponse);
         return new ResponseEntity<>(primesResponse, HttpStatus.OK);
     }
 }

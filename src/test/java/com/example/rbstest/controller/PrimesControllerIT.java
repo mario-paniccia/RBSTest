@@ -2,6 +2,7 @@ package com.example.rbstest.controller;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
 import com.example.rbstest.api.PrimesResponse;
@@ -36,5 +37,14 @@ public class PrimesControllerIT {
         assertThat(primesResponse.getPrimes(), contains(2, 3, 5, 7));
     }
 
+    @Test
+    public void shouldReturn200AndEmptyListWhenBoundIsInvalid() {
+        ResponseEntity<PrimesResponse> entity = this.testRestTemplate.getForEntity(
+                "http://localhost:" + this.port + "/primes/0", PrimesResponse.class);
 
+        assertThat(entity.getStatusCode(), equalTo(HttpStatus.OK));
+        PrimesResponse primesResponse = entity.getBody();
+        assertThat(primesResponse.getInitial(), equalTo(0));
+        assertThat(primesResponse.getPrimes(), hasSize(0));
+    }
 }
