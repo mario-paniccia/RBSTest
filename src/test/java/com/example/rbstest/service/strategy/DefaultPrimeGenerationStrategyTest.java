@@ -1,4 +1,4 @@
-package com.example.rbstest.service;
+package com.example.rbstest.service.strategy;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
@@ -9,19 +9,19 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DefaultPrimesServiceTest {
+public class DefaultPrimeGenerationStrategyTest {
 
-    DefaultPrimesService defaultPrimesService;
+    DefaultPrimeGenerationStrategy strategy;
 
     @Before
     public void setup() {
-        defaultPrimesService = new DefaultPrimesService();
+        strategy = new DefaultPrimeGenerationStrategy();
     }
 
     @Test
     public void testRerunsEmptyListWhenBoundIsNegative() {
 
-        List<Integer> primes = defaultPrimesService.findPrimes(-2);
+        List<Integer> primes = strategy.findPrimes(-2);
 
         assertThat(primes, hasSize(0));
     }
@@ -29,7 +29,7 @@ public class DefaultPrimesServiceTest {
     @Test
     public void testRerunsEmptyListWhenBoundIsZero() {
 
-        List<Integer> primes = defaultPrimesService.findPrimes(0);
+        List<Integer> primes = strategy.findPrimes(0);
 
         assertThat(primes, hasSize(0));
     }
@@ -37,7 +37,7 @@ public class DefaultPrimesServiceTest {
     @Test
     public void testRerunsEmptyListWhenBoundIsOne() {
 
-        List<Integer> primes = defaultPrimesService.findPrimes(1);
+        List<Integer> primes = strategy.findPrimes(1);
 
         assertThat(primes, hasSize(0));
     }
@@ -45,7 +45,7 @@ public class DefaultPrimesServiceTest {
     @Test
     public void testRetuningOneElementList() {
 
-        List<Integer> primes = defaultPrimesService.findPrimes(2);
+        List<Integer> primes = strategy.findPrimes(2);
 
         assertThat(primes, contains(2));
     }
@@ -53,7 +53,7 @@ public class DefaultPrimesServiceTest {
     @Test
     public void testPrimesGenerationWithBoundReturned() {
 
-        List<Integer> primes = defaultPrimesService.findPrimes(7);
+        List<Integer> primes = strategy.findPrimes(7);
 
         assertThat(primes, contains(2, 3, 5, 7));
     }
@@ -61,7 +61,7 @@ public class DefaultPrimesServiceTest {
     @Test
     public void testPrimesGenerationWithBoundNotReturned() {
 
-        List<Integer> primes = defaultPrimesService.findPrimes(10);
+        List<Integer> primes = strategy.findPrimes(10);
 
         assertThat(primes, contains(2, 3, 5, 7));
     }
