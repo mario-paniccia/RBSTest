@@ -1,6 +1,7 @@
 package com.example.rbstest.controller;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
 import com.example.rbstest.api.PrimesResponse;
@@ -30,6 +31,9 @@ public class PrimesControllerIT {
                 "http://localhost:" + this.port + "/primes/10", PrimesResponse.class);
 
         assertThat(entity.getStatusCode(), equalTo(HttpStatus.OK));
+        PrimesResponse primesResponse = entity.getBody();
+        assertThat(primesResponse.getInitial(), equalTo(10));
+        assertThat(primesResponse.getPrimes(), contains(2, 3, 5, 7));
     }
 
 
